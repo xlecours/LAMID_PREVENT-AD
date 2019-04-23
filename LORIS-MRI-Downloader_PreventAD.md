@@ -56,14 +56,23 @@ candidates = json.loads(requests.get(
     headers = {'Authorization': 'Bearer %s' % token}
 ).content.decode('ascii'))
 
+candidatetotal = len(candidates['Candidates'])
+print(str(candidatetotal) + ' candidates found')
+print("-------------------------------------------\n")
+processedcandidates = 0
+
 for candidate in candidates['Candidates']:
     candid = candidate['CandID']
+    
+    print('Processing candidate #' + candid + "\n")
     
     # Get that candidate's sessions
     sessions = json.loads(requests.get(
         url = baseurl + '/candidates/' + candid,
         headers = {'Authorization': 'Bearer %s' % token}
     ).content.decode('ascii'))
+    
+    print(str(len(sessions['Visits'])) + " sessions found\n")
     
     for visit in sessions['Visits']:
         # Create the directory for that visit if it doesn't already exists
@@ -90,6 +99,8 @@ for candidate in candidates['Candidates']:
             headers = {'Authorization': 'Bearer %s' % token}
         ).content.decode('ascii'))
         
+        print(str(len(files['Files'])) + ' files found for session ' + visit)
+        
         for file in files['Files']:
             filename = file['Filename']
             
@@ -112,6 +123,11 @@ for candidate in candidates['Candidates']:
                 )
                 qcfile = open(relativepath, "w+b")
                 qcfile.write(bytes(qc.content))
+              
+    processedcandidates += 1
+    print("\n-------------------------------------------")
+    print(str(processedcandidates) + ' out of ' + str(candidatetotal) + ' candidates processed')
+    print("-------------------------------------------\n")
             
 ```
 
