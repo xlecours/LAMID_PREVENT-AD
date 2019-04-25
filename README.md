@@ -91,7 +91,9 @@ contain 232 candidate folders.
 information (Gender, Language, etc.) and several visit folders can be found.
 * Within each visit folder of a given candidate, a `session.json` file, MINC images and 
 QC information (in a JSON file) are available for each modality acquired during the MRI session. 
-  * All MINC images are labelled as follows: `preventad_DCCID_VisitLabel_ScanType_ScanNumber.mnc`
+  * All MINC images are labelled as follows: `preventad_DCCID_VisitLabel_ScanType_ScanNumber.mnc`.
+    More details about the MINC format can be found at 
+    https://en.wikibooks.org/wiki/MINC/SoftwareDevelopment/MINC2.0_File_Format_Reference 
   * The QC information JSON file of a given MINC has the same name as the MINC file 
     associated with the QC information with `.qc.json` added at the end of the image name. 
     This JSON file contains image QC information (QC Status, Caveats, etc.)
