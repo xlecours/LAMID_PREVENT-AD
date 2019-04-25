@@ -4,7 +4,7 @@
 ## 1. Description
 
 Due to the size (~200 GB) of the imaging dataset of the open PREVENT-AD dataset, 
-it is not possible to download the whole study’s imaging dataset via the browser. 
+it is not possible to download the entire study’s imaging dataset via the browser. 
 However, various ways to download the imaging dataset are provided in this repository. 
  
 Users can choose one of the following tool to download the open PREVENT-AD images:
@@ -82,15 +82,13 @@ Below is a screenshot of the organization of a subset of the downloaded data.
 
 ![](images/data_organization.png)
 
-All images are organized by candidate’s DCCID and visit labels. Note that the DCCID 
-is the 7 digit candidate ID available in Browser module described in section 1. 
+All images are organized by candidate’s 7 digits ID and visit labels. 
 
-After completion of the download, the directory with the open PREVENT-AD data should 
-contain 232 candidate folders. 
+After download, the open PREVENT-AD data should contain 232 candidate folders. 
 * Within each candidate folders, a `candidate.json` file with basic demographic 
 information (Gender, Language, etc.) and several visit folders can be found.
-* Within each visit folder of a given candidate, a `session.json` file, MINC images and 
-QC information (in a JSON file) are available for each modality acquired during the MRI session. 
+* Within each candidate's visit folder, a `session.json` file, MINC images and 
+QC information (in a JSON file) are available per modality acquired in the MRI session. 
   * All MINC images are labelled as follows: `preventad_DCCID_VisitLabel_ScanType_ScanNumber.mnc`.
     More details about the MINC format can be found at 
     https://en.wikibooks.org/wiki/MINC/SoftwareDevelopment/MINC2.0_File_Format_Reference 
