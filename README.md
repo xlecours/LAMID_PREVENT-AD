@@ -5,7 +5,7 @@
 
 This repository provides a tool to download the open PREVENT-AD MRI files. Users can
 choose one of the following tool to download the open PREVENT-AD images:
-  - Python script called `LORIS-MRI-Downloader_PREVENT-AD.py` 
+  - a Python script called `LORIS-MRI-Downloader_PREVENT-AD.py`
   - Jupiter Notebook called `LORIS-MRI_Downloader_PREVENT-AD.ipynb` 
 
 See section 2 below for the installation steps required for the python script 
@@ -51,3 +51,8 @@ from using the `-l` option.
 
 Open the Jupiter Notebook file `LORIS-MRI_Downloader_PREVENT-AD.ipynb` in Jupiter
 Notebook and execute the code in the notebook.
+
+
+
+## 4. Organisation of the downloaded structure
+
