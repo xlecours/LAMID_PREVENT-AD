@@ -215,8 +215,3 @@ for candidate in candidates['Candidates']:
     print("-------------------------------------------\n")
             
 ```
-
-
-```python
-
-```
