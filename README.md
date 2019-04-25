@@ -3,56 +3,97 @@
 
 ## 1. Description
 
-This repository provides a tool to download the open PREVENT-AD MRI files. Users can
-choose one of the following tool to download the open PREVENT-AD images:
-  - a Python script called `LORIS-MRI-Downloader_PREVENT-AD.py`
-  - Jupiter Notebook called `LORIS-MRI_Downloader_PREVENT-AD.ipynb` 
+Due to the size (~200 GB) of the imaging dataset of the open PREVENT-AD dataset, 
+it is not possible to download the whole study’s imaging dataset via the browser. 
+However, various ways to download the imaging dataset are provided in this repository. 
+ 
+Users can choose one of the following tool to download the open PREVENT-AD images:
+  - a Python script called `LAMID_PREVENT-AD.py`
+  - Jupiter Notebook called `LAMID_PREVENT-AD.ipynb` 
 
-See section 2 below for the installation steps required for the python script 
-(section 2.1) and for the Jupiter Notebook (section 2.2).
+See section 2 below for the installation steps required for the tools available in 
+this repository.
 
 ## 2. Installation and Requirements
 
 Requirements for the script:
-- Python (2.7 or 3)
-- the following Python libraries: `getpass`, `json`, `requests`, `os`. To install those
-libraries using `pip`, run the following commands:
+- Python 3 or higher
+- the following Python libraries: `getpass`, `json`, `requests`, `os`, `sys`, `getopt`
+and `errno`. 
+
+### Installation script (requires Ubuntu and sudo permission)
+
+An install script is provided in this repository to install Python and all its dependencies.
+
+Note that the script will only work on Ubuntu machines and requires sudo permission.
+
+To run the install script:
+```bash
+sudo bash install_LAMID_PREVENT-AD.sh
+```
+
+### Manual installation
+
+1. Install python 3 or higher with `pip`
+
+2. To install the python libraries using `pip`, run the following commands:
 
 ```bash
 pip install getpass
 pip install json
 pip install requests
 pip install os
+pip install sys
+pip install getopt
+pip install errno
 ```
+
 
 ## 3. Downloading the MRI from the open PREVENT-AD LORIS API
 
-### 3.1 Using `LORIS-MRI-Downloader_PREVENT-AD.py`
+### 3.1 Using `LAMID_PREVENT-AD.py`
 
 In order to download the images from the open PREVENT-AD LORIS API, run the following
 command in the directory where you want the images to be downloaded:
 
-`python LORIS-MRI-Downloader_PREVENT-AD.py`
+`python LAMID_PREVENT-AD.py`
 
 Note, by default the images will be downloaded in the current working directory. However,
 if you wish to download the images in a different directory, you can specify it when 
-running the script with the option `-d` as follows:
+running the script with the option `-o` as follows:
 
-`python LORIS-MRI-Downloader_PREVENT-AD.py -d %PATH_TO_DIRECTORY%`
+`python LAMID_PREVENT-AD.py -o %PATH_TO_DIRECTORY%`
 
 with `%PATH_TO_DIRECTORY%` being replaced by the path to the directory where you want
-the files to be downloaded.
+the files to be downloaded in.
 
-Additionally, you can specify a list of candidates you wish to download the images
-from using the `-l` option.
 
 
 ### 3.2 Using Jupiter Notebook
 
-Open the Jupiter Notebook file `LORIS-MRI_Downloader_PREVENT-AD.ipynb` in Jupiter
+Open the Jupiter Notebook file `LAMID_PREVENT-AD.ipynb` in Jupiter
 Notebook and execute the code in the notebook.
 
 
 
 ## 4. Organisation of the downloaded structure
 
+Below is a screenshot of the organization of a subset of the downloaded data.
+
+![](images/data_organization.png)
+
+All images are organized by candidate’s DCCID and visit labels. Note that the DCCID 
+is the 7 digit candidate ID available in Browser module described in section 1. 
+
+After completion of the download, the directory with the open PREVENT-AD data should 
+contain 232 candidate folders. 
+* Within each candidate folders, a `candidate.json` file with basic demographic 
+information (Gender, Language, etc.) and several visit folders can be found.
+* Within each visit folder of a given candidate, a `session.json` file, MINC images and 
+QC information (in a JSON file) are available for each modality acquired during the MRI session. 
+  * All MINC images are labelled as follows: `preventad_DCCID_VisitLabel_ScanType_ScanNumber.mnc`
+  * The QC information JSON file of a given MINC has the same name as the MINC file 
+    associated with the QC information with `.qc.json` added at the end of the image name. 
+    This JSON file contains image QC information (QC Status, Caveats, etc.)
+  * The `session.json` information file contains information pertinent to the session 
+    (Age at MRI, Subproject, etc.)
