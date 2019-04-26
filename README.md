@@ -17,7 +17,7 @@ this repository.
 ## 2. Installation and Requirements
 
 Requirements for the script:
-- Python 3 or higher
+- Python 2.7 or Python 3
 - the following Python libraries: `getpass`, `json`, `requests`, `os`, `sys`, `getopt`
 and `errno`. 
 
@@ -34,7 +34,7 @@ sudo bash install_LAMID_PREVENT-AD.sh
 
 ### Manual installation
 
-1. Install python 3 or higher with `pip`
+1. Install python 2.7 or python 3 and `pip`
 
 2. To install the python libraries using `pip`, run the following commands:
 
